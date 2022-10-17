@@ -1,4 +1,5 @@
 const Thing = require("../models/thing.model");
+const helper = require("../helpers/helper");
 const fs = require("fs");
 
 // exports.createThing = (req, res, next) => {
@@ -38,7 +39,8 @@ exports.createThing = (req, res, next) => {
   thing
     .save()
     .then(() => {
-      res.status(201).json({ message: "Objet enregistré !" });
+      const message = "Objet enregistré !";
+      res.status(201).json(helper.success(message, thing));
     })
     .catch((error) => {
       res.status(400).json({ error });
